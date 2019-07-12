@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "test3.csv",
+				"fileName": "*.csv",
 				"folderPath": "dfwork",
 				"container": "containterichinohe"
 			},
