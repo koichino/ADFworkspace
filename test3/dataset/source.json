@@ -1,0 +1,38 @@
+{
+	"name": "source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Source",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "test3.csv",
+				"folderPath": "dfwork",
+				"container": "containterichinohe"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Product",
+				"type": "String"
+			},
+			{
+				"name": "Sales",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
