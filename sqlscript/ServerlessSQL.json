@@ -1,0 +1,17 @@
+{
+	"name": "ServerlessSQL",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'synapsews_koichinogen24synapse_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [synapsews_koichinogen24synapse_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://synapsews@koichinogen24synapse.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE item (\n\t[i_item_sk] int,\n\t[i_item_id] nvarchar(4000),\n\t[i_rec_start_date] date,\n\t[i_rec_end_date] date,\n\t[i_item_desc] nvarchar(4000),\n\t[i_current_price] numeric(7,2),\n\t[i_wholesale_cost] numeric(7,2),\n\t[i_brand_id] int,\n\t[i_brand] nvarchar(4000),\n\t[i_class_id] int,\n\t[i_class] nvarchar(4000),\n\t[i_category_id] int,\n\t[i_category] nvarchar(4000),\n\t[i_manufact_id] int,\n\t[i_manufact] nvarchar(4000),\n\t[i_size] nvarchar(4000),\n\t[i_formulation] nvarchar(4000),\n\t[i_color] nvarchar(4000),\n\t[i_units] nvarchar(4000),\n\t[i_container] nvarchar(4000),\n\t[i_manager_id] int,\n\t[i_product_name] nvarchar(4000)\n\t)\n\tWITH (\n\tLOCATION = 'extable/*.parquet',\n\tDATA_SOURCE = [synapsews_koichinogen24synapse_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n\n\n--SELECT TOP 100 * \nSELECT count(*) \nFROM dbo.item\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "koichinodb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

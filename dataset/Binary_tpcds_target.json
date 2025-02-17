@@ -1,0 +1,18 @@
+{
+	"name": "Binary_tpcds_target",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "tpcds"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

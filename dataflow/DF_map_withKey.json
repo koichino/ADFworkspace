@@ -1,0 +1,77 @@
+{
+	"name": "DF_map_withKey",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "MapInput",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "MapOutput",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CallMaps",
+					"linkedService": {
+						"referenceName": "RestBingMapwithKey",
+						"type": "LinkedServiceReference"
+					}
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     KEY as string ('?c=ja&key=Am6zrDIkuzOe6VyjqirHzICQ8p_cGVuNojoegQk17nONYFRck3vydwczeYWxvbyA')",
+				"}",
+				"source(output(",
+				"          latitude as string,",
+				"          longitude as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 call(mapColumn(",
+				"          location,",
+				"          each(match(/* All input columns */true()),",
+				"               /* Input name */$$ = $$)",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     output(",
+				"          headers as [string,string],",
+				"          status as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     format: 'rest',",
+				"     store: 'restservice',",
+				"     timeout: 30,",
+				"     requestInterval: 0,",
+				"     httpMethod: 'GET',",
+				"     headerColumnName: 'headers',",
+				"     bodyColumnName: 'body',",
+				"     statusColumnName: 'status',",
+				"     addResponseCode: true,",
+				"     requestFormat: ['type' -> 'json'],",
+				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'documentPerLine']) ~> CallMaps",
+				"CallMaps sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "serverless_ex_web_sales",
+	"properties": {
+		"content": {
+			"query": "/*\nIF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'synapsews_koichinogen24synapse_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [synapsews_koichinogen24synapse_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://synapsews@koichinogen24synapse.dfs.core.windows.net' \n\t)\nGO\n\nCREATE EXTERNAL TABLE et_web_sales (\n\t[ws_sold_time_sk] int,\n\t[ws_ship_date_sk] int,\n\t[ws_item_sk] int,\n\t[ws_bill_customer_sk] int,\n\t[ws_bill_cdemo_sk] int,\n\t[ws_bill_hdemo_sk] int,\n\t[ws_bill_addr_sk] int,\n\t[ws_ship_customer_sk] int,\n\t[ws_ship_cdemo_sk] int,\n\t[ws_ship_hdemo_sk] int,\n\t[ws_ship_addr_sk] int,\n\t[ws_web_page_sk] int,\n\t[ws_web_site_sk] int,\n\t[ws_ship_mode_sk] int,\n\t[ws_warehouse_sk] int,\n\t[ws_promo_sk] int,\n\t[ws_order_number] bigint,\n\t[ws_quantity] int,\n\t[ws_wholesale_cost] numeric(7,2),\n\t[ws_list_price] numeric(7,2),\n\t[ws_sales_price] numeric(7,2),\n\t[ws_ext_discount_amt] numeric(7,2),\n\t[ws_ext_sales_price] numeric(7,2),\n\t[ws_ext_wholesale_cost] numeric(7,2),\n\t[ws_ext_list_price] numeric(7,2),\n\t[ws_ext_tax] numeric(7,2),\n\t[ws_coupon_amt] numeric(7,2),\n\t[ws_ext_ship_cost] numeric(7,2),\n\t[ws_net_paid] numeric(7,2),\n\t[ws_net_paid_inc_tax] numeric(7,2),\n\t[ws_net_paid_inc_ship] numeric(7,2),\n\t[ws_net_paid_inc_ship_tax] numeric(7,2),\n\t[ws_net_profit] numeric(7,2)\n\t)\n\tWITH (\n\tLOCATION = 'extable/web_sales/ws_sold_date_sk=*/*.parquet',\n\tDATA_SOURCE = [synapsews_koichinogen24synapse_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat]\n\t)\nGO\n*/\n\n--SELECT TOP 100 * FROM dbo.et_web_sales\nSELECT count(*) FROM dbo.et_web_sales\nGO",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "koichinodb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

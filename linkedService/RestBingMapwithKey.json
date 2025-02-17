@@ -1,0 +1,17 @@
+{
+	"name": "RestBingMapwithKey",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://dev.virtualearth.net/REST/v1/Locations/35,139?c=ja&key=Am6zrDIkuzOe6VyjqirHzICQ8p_cGVuNojoegQk17nONYFRck3vydwczeYWxvbyA",
+			"enableServerCertificateValidation": false,
+			"authenticationType": "Anonymous"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

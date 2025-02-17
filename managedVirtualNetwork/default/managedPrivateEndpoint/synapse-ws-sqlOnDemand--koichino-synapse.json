@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-sqlOnDemand--koichino-synapse",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/7b91c717-e202-4577-8d94-4d97430ccdf4/resourceGroups/koichino-synapse-rg/providers/Microsoft.Synapse/workspaces/koichino-synapse",
+		"groupId": "sqlOnDemand",
+		"fqdns": [
+			"koichino-synapse-ondemand.8bedb011-0e36-4267-a888-d69942aa1393.sql.azuresynapse.net"
+		]
+	}
+}

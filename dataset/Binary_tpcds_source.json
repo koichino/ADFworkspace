@@ -1,0 +1,18 @@
+{
+	"name": "Binary_tpcds_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adlsgen2MSsub",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "tpcds"
+			}
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

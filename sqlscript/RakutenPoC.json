@@ -1,0 +1,17 @@
+{
+	"name": "RakutenPoC",
+	"properties": {
+		"content": {
+			"query": "select \n    JSON_VALUE (doc, '$[0].sparkApplicationId') AS sparkApplicationId,\n    JSON_VALUE (doc, '$[0].queryId') AS queryId,\n    JSON_VALUE (doc, '$[0].runTimes.startTime') AS startTime,\n    JSON_VALUE (doc, '$[0].runTimes.endTime') AS endTime,\n    JSON_VALUE (doc, '$[0].runTimes.executionTimeMs') AS executionTimeMs,\n    JSON_VALUE (doc, '$[0].queryResultValidationSuccess') AS queryResultValidationSuccess,\n    JSON_VALUE (doc, '$[0].fileScanTimeMs') AS fileScanTimeMs,\n    JSON_VALUE (doc, '$[0].percentTimeInFileScan') AS percentTimeInFileScan,\n    JSON_VALUE (doc, '$[0].fileListingTimeMs') AS fileListingTimeMs,\n    JSON_VALUE (doc, '$[0].sortSpillSize') AS sortSpillSize,\n    JSON_VALUE (doc, '$[0].aggregateSpillSize') AS aggregateSpillSize\nfrom openrowset(\n--      bulk 'https://koichinogen24synapse.dfs.core.windows.net/synapsews/rakutenpoc/1st/*/*Json',\n      bulk 'https://koichinogen24synapse.dfs.core.windows.net/synapsews/rakutenpoc/2nd/*/*Json',\n--      bulk 'https://koichinogen24synapse.dfs.core.windows.net/synapsews/rakutenpoc/3rd/*/*Json',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\nOrder by queryId ASC\n\n\ngo\n\nselect top 10 *\nfrom openrowset(\n        bulk 'https://koichinogen24synapse.dfs.core.windows.net/synapsews/rakutenpoc/1st/*/*Json',\n        format = 'csv',\n        fieldterminator ='0x0b',\n        fieldquote = '0x0b'\n    ) with (doc nvarchar(max)) as rows\n\n\ngo\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

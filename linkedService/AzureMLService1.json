@@ -1,0 +1,18 @@
+{
+	"name": "AzureMLService1",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureMLService",
+		"typeProperties": {
+			"subscriptionId": "7b91c717-e202-4577-8d94-4d97430ccdf4",
+			"resourceGroupName": "koichino-ai-rg",
+			"mlWorkspaceName": "koichino-ml",
+			"authentication": "MSI"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

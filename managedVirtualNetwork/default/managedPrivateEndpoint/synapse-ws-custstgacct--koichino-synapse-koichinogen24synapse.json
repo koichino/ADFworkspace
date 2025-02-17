@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-custstgacct--koichino-synapse-koichinogen24synapse",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/7b91c717-e202-4577-8d94-4d97430ccdf4/resourceGroups/koichino-synapse-rg/providers/Microsoft.Storage/storageAccounts/koichinogen24synapse",
+		"groupId": "dfs",
+		"fqdns": [
+			"koichinogen24synapse.dfs.core.windows.net"
+		]
+	}
+}
